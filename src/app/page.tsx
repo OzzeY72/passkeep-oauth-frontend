@@ -10,10 +10,13 @@ export default function Page() {
     const submitData = {email,password}
 
     try {
-      const req_str = `http://localhost:3002/callback/passkeep?email=${email}&password=${password}`;
-      console.log(req_str);
+      const req_str = `http://localhost:3001/login`;
       const res = await fetch(req_str,{
-        method: 'GET',
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(submitData),
       })
       console.log(res)
       if(res.ok){
